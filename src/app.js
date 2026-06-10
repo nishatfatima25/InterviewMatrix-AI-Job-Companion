@@ -1,8 +1,9 @@
 const express = require("express")
-
+const cookieParser = require("cookie-parser") //middleware for token blacklisting
 const app = express()
 
 app.use(express.json())
+app.use(cookieParser())
 
 //it requires all the routes here
 const authRouter = require("./routes/auth.routes")
