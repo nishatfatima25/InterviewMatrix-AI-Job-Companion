@@ -1,10 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
-import { Link, Navigate } from 'react-router'
+import React,{ useState } from 'react'
+import { useNavigate, Link } from 'react-router'
 import { useAuth } from '../hooks/useAuth'
 
 const Register = () => {
 
+  const navigate = useNavigate()
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -28,7 +28,7 @@ const Register = () => {
 
         <div className='input-group'>
           <label htmlFor="email">Username</label>
-          <input onChange={(e)=>{setUsername(e.target.value)}} type='text' id='text' name='text' placeholder='Enter username' />
+          <input onChange={(e)=>{setUsername(e.target.value)}} type='text' id='username' name='username' placeholder='Enter username' />
         </div>
 
         <div className='input-group'>
