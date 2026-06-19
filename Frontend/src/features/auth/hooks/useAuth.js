@@ -6,27 +6,71 @@ export const useAuth = ()=>{
     const context = useContext(AuthContext)
     const {user, setUser, loading, setLoading} = context
 
-    const handleLogin = async({email,password}) =>{
-        setLoading(true)
-        try{
-            const data = await login({email,password})
-            setUser(data.user)
-        } catch(err){console.log(err)}
+    // const handleLogin = async({email,password}) =>{
+    //     setLoading(true)
+    //     try{
+    //         const data = await login({email,password})
+    //         setUser(data.user)
+    //     } catch(err){console.log(err)}
 
-        finally{
-            setLoading(false)
+    //     finally{
+    //         setLoading(false)
+    //     }
+    // }
+
+    const handleLogin = async ({ email, password }) => {
+        setLoading(true);
+
+        try {
+            const data = await login({ email, password });
+
+            if (!data?.user) {
+                return { success: false };
+            }
+
+            setUser(data.user);
+            return { success: true, user: data.user };
+
+        } 
+        catch (err) {
+            console.log(err);
+            return { success: false };
+        } finally {
+            setLoading(false);
         }
     }
 
-    const handleRegister = async ({username,email,password}) =>{
-        setLoading(true)
-        try{
-            const data = await register({username,email,password})
-            setUser(data.user)
-        }catch(err){console.log(err)}
+    // const handleRegister = async ({username,email,password}) =>{
+    //     setLoading(true)
+    //     try{
+    //         const data = await register({username,email,password})
+    //         setUser(data.user)
+    //     }catch(err){console.log(err)}
 
-        finally{
-            setLoading(false)
+    //     finally{
+    //         setLoading(false)
+    //     }
+    // }
+
+    const handleRegister = async ({ username, email, password }) => {
+        setLoading(true);
+
+        try {
+            const data = await register({ username, email, password });
+
+        if (!data?.user) {
+            return { success: false };
+        }
+
+        setUser(data.user);
+        return { success: true, user: data.user };
+
+        } catch (err) {
+            console.log(err);
+            return { success: false };
+        }
+        finally {
+            setLoading(false);
         }
     }
 

@@ -28,7 +28,7 @@ const Home = () => {
 
     if (loading) {
         return (
-            <main className='loading-screen'>
+            <main className='loading-screen' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
                 <h1>Loading your interview plan...</h1>
             </main>
         )
